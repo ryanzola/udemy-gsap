@@ -10,6 +10,7 @@
   "author": "ryanzola <ryanzola@me.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/gsap": "^1.20.0",
     "gsap": "^2.0.2",
     "jquery": "^3.3.1"
   },
