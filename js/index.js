@@ -1,4 +1,4 @@
-import { TweenMax, TimelineMax } from 'gsap/all';
+import { TweenMax, TimelineMax, Back } from 'gsap/all';
 import jquery from "jquery";
 
 window.$ = window.jQuery = jquery;
@@ -42,6 +42,36 @@ window.$ = window.jQuery = jquery;
 	}
 
 	// enter floor vegetation
+	function enterFloorVegitation() {
+		var fLeavesTl = new TimelineMax();
+
+		fLeavesTl
+			.staggerTo($floorLeaves, 1, {y: 0, ease: Back.easeOut}, 0.01)
+			.fromTo($tree, 1.1, {
+				scaleY: 0.2,
+				autoAlpha: 0,
+				transformOrigin:'bottom center'
+			}, {
+				scaleY: 1,
+				autoAlpha: 1,
+				transformOrigin: 'bottom center',
+				ease: Back.easeInOut
+			})
+			.fromTo($tree, 0.9, {
+				scaleX: 0.2,
+				autoAlpha: 0,
+				transformOrigin:'bottom center'
+			}, {
+				scaleX: 1,
+				autoAlpha: 1,
+				transformOrigin: 'bottom center',
+				ease: Back.easeInOut
+			}, '-=0.9')
+			;
+
+		return fLeavesTl;
+	}
+
 
 	// enter tree
 
@@ -56,7 +86,7 @@ window.$ = window.jQuery = jquery;
 		// TODO: add child timelines to master timeline
 		masterTl
 			.add(clearStage(), 'clear-scene-stage')
-
+			.add(enterFloorVegitation, 'floor-vegitation')
 			;
 	}
 
